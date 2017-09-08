@@ -1,0 +1,19 @@
+{
+  "name": "bookshop",
+  "version": "1.0.0",
+  "description": "Book webshop using Google Books API",
+  "main": "angular.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bigildi/bookshop.git"
+  },
+  "author": "bigildi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bigildi/bookshop/issues"
+  },
+  "homepage": "https://github.com/bigildi/bookshop#readme"
+}
