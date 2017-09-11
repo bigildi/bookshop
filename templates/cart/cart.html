@@ -1,0 +1,31 @@
+
+<div class="alert alert-warning" role="alert" ng-show="ngCart.getTotalItems() === 0">
+    A kosarad üres.
+</div>
+
+<div class="table-responsive col-lg-12" ng-show="ngCart.getTotalItems() > 0">
+    <h2>Könyvek a kosaradban: </h2>
+    <table class="table table-striped ngCart cart">
+        <thead>
+        <tr>
+            <th>Töröl</th>
+            <th>Könyv címe</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in ngCart.getCart().items track by $index">
+            <td><span ng-click="ngCart.removeItemById(item.getId())" class="glyphicon glyphicon-remove"></span></td>
+
+            <td><a href="#book/{{item.getId()}}">{{item.getName()}}</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<style>
+    .ngCart.cart span[ng-click] {
+        cursor: pointer;
+    }
+    .ngCart.cart .glyphicon.disabled {
+        color:#aaa;
+    }
+</style>
