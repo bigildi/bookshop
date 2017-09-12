@@ -17,17 +17,25 @@
 
   <body>
     <div class="container">
-      <ul class="nav nav-pills">
+      <ul class="nav nav-pills nav-fill">
           <li class="nav-item">
-            <a class="nav-link active" href="/">Kezdő oldal</a>
+            <form id="myForm" class="" name="myForm" ng-submit="submit()" ng-controller="searchCtrl">
+              <div class="input-group">
+                <input type="text" ng-model="searchTerm" class="form-control" placeholder="könyv címe" aria-label="könyv címe" />
+                <span class="input-group-btn">
+                  <input type="submit" id="submit" value="Keress" class="btn btn-secondary" />
+                </span>
+              </div>
+            </form>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#cart">Kosár</a>
-            <ngcart-summary></ngcart-summary>
+            <a class="nav-link" href="#cart">
+              <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="30" height="30"><path d="M27.715 10.48l-2.938 6.312c-.082.264-.477.968-1.318.968H11.83c-.89 0-1.478-.638-1.6-.904l-2.05-6.524c-.55-1.818.535-2.4 1.282-2.4h16.805c1.68 0 1.903 1.457 1.448 2.548zm-17.98-.86c.01.06.027.136.057.225l1.742 6.208c.026.017.058.028.09.028H23.25l2.92-6.27c.025-.072.045-.136.053-.19H9.735zm3.81 15.914c-.82 0-1.483-.662-1.483-1.482s.663-1.484 1.482-1.484c.824 0 1.486.664 1.486 1.484s-.66 1.482-1.486 1.482zm9.83 0c-.82 0-1.482-.662-1.482-1.482s.662-1.484 1.482-1.484c.822 0 1.486.664 1.486 1.484s-.663 1.482-1.485 1.482zm1.2-3.96h-10.61c-2.274 0-3.18-2.15-3.22-2.243-.01-.023-.02-.052-.027-.075L6.884 6.205c-.26-.88-.477-1.007-1.146-1.007H2.9c-.455 0-.82-.364-.82-.818s.365-.82.82-.82h2.84c1.828 0 2.4 1.103 2.716 2.18l3.82 13c.088.188.612 1.197 1.69 1.197h10.61c.45 0 .818.368.818.818 0 .455-.367.82-.818.82z"/></svg>
+              <ngcart-summary></ngcart-summary>
+            </a>
           </li>
       </ul>
       <div ng-view=""></div>
     </div>
-
   </body>
 </html>

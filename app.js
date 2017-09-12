@@ -1,21 +1,24 @@
 var bookApp = angular.module('bookApp', ['ngResource','ngRoute', 'ngCart']);
 
-bookApp.controller('bookCtrl', function ($scope, ListService, $location) {
+bookApp.controller('searchCtrl', function ($scope, $location) {
+    $scope.submit = function() {
+        if ($scope.searchTerm) {
+            $location.path('/search/' + $scope.searchTerm);
+        }
+    };
+});
+
+bookApp.controller('bookCtrl', function ($scope, ListService, $routeParams) {
     $scope.searchTerm = "maze";
-
-    $scope.searchBook = function () {
-        ListService.get({ q: $scope.searchTerm }, function (response) {
-            $scope.bookResults = response.items;
-            $scope.pageUrl = location.host;
-            $scope.orderProp = 'volumeInfo.title';
-
-        });
-    }
+    ListService.get({ q: $routeParams.s }, function (response) {
+        $scope.bookResults = response.items;
+        $scope.orderProp = 'volumeInfo.title';
+    });
 });
 
 bookApp.controller('booCtrl', function ($scope, BookService, $routeParams) {
     BookService.get({volumeId: $routeParams.id}, function (response) {
-        $scope.id = $routeParams.id;
+        $scope.book = response;
         $scope.title = response.volumeInfo.title;
         $scope.authors = response.volumeInfo.authors ? response.volumeInfo.authors : [];
         $scope.description = response.volumeInfo.description ? response.volumeInfo.description : '';
@@ -27,6 +30,9 @@ bookApp.controller('booCtrl', function ($scope, BookService, $routeParams) {
 bookApp.config(function($routeProvider) {
     $routeProvider
         .when('/', {
+            templateUrl: 'templates/home.html'
+        })
+        .when('/search/:s', {
             templateUrl: 'templates/book-list.html',
             controller: 'bookCtrl'
         })

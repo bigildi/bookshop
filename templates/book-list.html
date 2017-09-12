@@ -1,10 +1,3 @@
-<form id="myForm" class="form-inline form-search" name="myForm">
-<label>Könyv címe:
-<input id="in" type="text" ng-model="searchTerm" class="search-query input-medium" />
-</label>
-<button class="btn btn-primary" ng-click="searchBook()">Keresés</button>
-</form>
-
 <section class="book-list">
 <ul>
     <li ng-repeat="item in bookResults | orderBy:orderProp">

@@ -4,21 +4,16 @@
 </div>
 
 <div class="table-responsive col-lg-12" ng-show="ngCart.getTotalItems() > 0">
-    <h2>Könyvek a kosaradban: </h2>
+    <h5>A kosár tartalma: </h5>
     <table class="table table-striped ngCart cart">
-        <thead>
-        <tr>
-            <th>Töröl</th>
-            <th>Könyv címe</th>
-        </tr>
-        </thead>
-        <tbody>
         <tr ng-repeat="item in ngCart.getCart().items track by $index">
-            <td><span ng-click="ngCart.removeItemById(item.getId())" class="glyphicon glyphicon-remove"></span></td>
-
             <td><a href="#book/{{item.getId()}}">{{item.getName()}}</a></td>
+            <td>
+                <button ng-click="ngCart.removeItemById(item.getId())" type="button" class="close" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </td>
         </tr>
-        </tbody>
     </table>
 </div>
 <style>
