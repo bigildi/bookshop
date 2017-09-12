@@ -3,7 +3,10 @@
     <li ng-repeat="item in bookResults | orderBy:orderProp">
         <a href="#book/{{item.id}}">{{item.volumeInfo.title}}</a>
         <br />
-        By: {{item.volumeInfo.authors}}
+        By:
+        <span ng-repeat="author in item.volumeInfo.authors">
+            {{author}}{{$last ? '' : ', '}}
+        </span>
         <br />
         Published: {{item.volumeInfo.publisher}}, {{item.volumeInfo.publishedDate}}
     </li>

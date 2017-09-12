@@ -6,3 +6,16 @@
     position: relative;
     bottom: 9px;
 }
+
+.cart-alert {
+    padding: .5rem 1rem;
+    margin: 0;
+}
+
+a {
+    cursor: pointer;
+}
+
+.row {
+    clear: left;
+}

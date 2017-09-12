@@ -2,11 +2,12 @@
 <p>
     Szerző:
     <span ng-repeat="author in book.volumeInfo.authors">
-        {{author}}
+        {{author}}{{$last ? '' : ', '}}
     </span>
 </p>
-<p> {{book.volumeInfo.description}}</p>
-<img src="{{book.volumeInfo.imageLinks.thumbnail}}" />
+<div>
+    <img src="{{book.volumeInfo.imageLinks.thumbnail}}" class="img-thumbnail float-left mr-3" />
+    <p>{{book.volumeInfo.description | htmlToPlaintext}}</p>
+</div>
 
-<a ng-click="cart.additem(id, name, data)">Kosárbe tesz</a>
-<ngcart-addtocart id="{{item.id}}" name="{{item.volumeInfo.title}}" price="1" quantity="1" data="item"></ngcart-addtocart>
+<ngcart-addtocart id="{{book.id}}" name="{{book.volumeInfo.title}}" data="book"></ngcart-addtocart>

@@ -1,18 +1,8 @@
-<div ng-hide="attrs.id">
-    <a class="btn btn-lg btn-primary" ng-disabled="true" ng-transclude></a>
-
-</div>
-<div ng-show="attrs.id">
-    <div>
-        <span ng-show="quantityMax">
-            <select name="quantity" id="quantity" ng-model="q"
-                    ng-options=" v for v in qtyOpt"></select>
-        </span>
-        <a class="btn btn-sm btn-primary"
-           ng-click="ngCart.addItem(id, name, data)"
-           ng-transclude></a>
+<div ng-show="attrs.id" class="row pt-4">
+    <div class="col-sm-2">
+        <a class="btn btn-secondary" ng-click="ngCart.addItem(id, name, data)">Kosárba tesz</a>
     </div>
-    <mark  ng-show="inCart()">
-        Könyv a kosárba téve!  <a ng-click="ngCart.removeItemById(id)" style="cursor: pointer;">Töröl</a>
-    </mark>
+    <div ng-show="inCart()" class="alert alert-light col-sm-4">
+        Könyv a kosárba téve!  <a ng-click="ngCart.removeItemById(id)" class="pointer text-primary">Töröl</a>
+    </div>
 </div>

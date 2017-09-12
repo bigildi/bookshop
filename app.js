@@ -8,7 +8,7 @@ bookApp.controller('searchCtrl', function ($scope, $location) {
     };
 });
 
-bookApp.controller('bookCtrl', function ($scope, ListService, $routeParams) {
+bookApp.controller('ListCtrl', function ($scope, ListService, $routeParams) {
     $scope.searchTerm = "maze";
     ListService.get({ q: $routeParams.s }, function (response) {
         $scope.bookResults = response.items;
@@ -16,14 +16,9 @@ bookApp.controller('bookCtrl', function ($scope, ListService, $routeParams) {
     });
 });
 
-bookApp.controller('booCtrl', function ($scope, BookService, $routeParams) {
+bookApp.controller('bookCtrl', function ($scope, BookService, $routeParams) {
     BookService.get({volumeId: $routeParams.id}, function (response) {
         $scope.book = response;
-        $scope.title = response.volumeInfo.title;
-        $scope.authors = response.volumeInfo.authors ? response.volumeInfo.authors : [];
-        $scope.description = response.volumeInfo.description ? response.volumeInfo.description : '';
-        $scope.thumbnail = response.volumeInfo.imageLinks.thumbnail ? response.volumeInfo.imageLinks.thumbnail : '';
-        $scope.item = response;
     });
 });
 
@@ -34,11 +29,11 @@ bookApp.config(function($routeProvider) {
         })
         .when('/search/:s', {
             templateUrl: 'templates/book-list.html',
-            controller: 'bookCtrl'
+            controller: 'ListCtrl'
         })
         .when('/book/:id', {
             templateUrl: 'templates/book-page.html',
-            controller: 'booCtrl'
+            controller: 'bookCtrl'
         })
         .when('/cart', {
             templateUrl: 'templates/cart-page.html'
@@ -46,4 +41,10 @@ bookApp.config(function($routeProvider) {
         .otherwise({
             redirectTo: '/'
         });
+});
+
+bookApp.filter('htmlToPlaintext', function() {
+    return function(text) {
+      return  text ? String(text).replace(/<[^>]+>/gm, '') : '';
+    };
 });
